@@ -10,10 +10,18 @@
 
 @implementation NewTreeViewController
 
+#pragma mark - Property Syntheses
 @synthesize delegate = _delegate;
 @synthesize treeName = _treeName;
 @synthesize treeType = _treeType;
 
+#pragma mark - Methods
+#pragma mark UIEvent Methods
+- (IBAction)addTree {
+    [self.delegate newTreeWithName:self.treeName.text AndType:self.treeType.text];
+}
+
+#pragma mark View Livecycle
 - (void)viewDidUnload
 {
     [self setTreeName:nil];
@@ -25,9 +33,5 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (IBAction)addTree {
-    [self.delegate newTreeWithName:self.treeName.text AndType:self.treeType.text];
 }
 @end

@@ -8,14 +8,13 @@
 
 #import "MyViewController.h"
 
-@interface MyViewController ()
-
-@end
-
 @implementation MyViewController
 
+#pragma mark - Property Syntheses
 @synthesize myTrees = _myTrees;
 
+
+#pragma mark - Methods
 - (TreeContainer *)myTrees{
     if (!_myTrees) {
         _myTrees = [[TreeContainer alloc] init];
@@ -23,6 +22,13 @@
     return _myTrees;
 }
 
+- (void) newTreeWithName:(NSString *)newName AndType:(NSString *)newType{
+    [self.myTrees addTreeWithName:newName AndType:newType];
+    [self.tableView reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark View Livecycle Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.myTrees addTreeWithName:@"Red Apple Tree" AndType:@"Fruit"];
@@ -38,12 +44,6 @@
     if ([segue.identifier isEqualToString:@"pushNewTreeVC"]) {
         [segue.destinationViewController setDelegate:self];
     }
-}
-
-- (void) newTreeWithName:(NSString *)newName AndType:(NSString *)newType{
-    [self.myTrees addTreeWithName:newName AndType:newType];
-    [self.tableView reloadData];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableView DataSource Methods
@@ -107,6 +107,10 @@
         }
         [tableView endUpdates];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 @end

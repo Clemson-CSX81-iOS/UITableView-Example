@@ -16,7 +16,10 @@
 
 @implementation TreeContainer
 
+#pragma mark - Property Syntheses
 @synthesize treeDictonary = _treeDictonary;
+
+#pragma mark - Methods
 
 -(NSMutableDictionary *)treeDictonary{
     if (!_treeDictonary) {

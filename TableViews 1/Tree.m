@@ -10,9 +10,11 @@
 
 @implementation Tree
 
+#pragma mark - Property Syntheses
 @synthesize name = _name;
 @synthesize type = _type;
 
+#pragma mark - Methods
 - (id)init{
     self = [super init];
     if (self) {
